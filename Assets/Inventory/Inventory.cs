@@ -7,7 +7,6 @@ public class Inventory : MonoBehaviour
     #region Singleton
 
     public static Inventory instance;
-    public int space = 20;
 
     void Awake()
     {
@@ -23,6 +22,8 @@ public class Inventory : MonoBehaviour
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
+
+    public int space = 20;
 
     public List<Item> items = new List<Item>();
 
