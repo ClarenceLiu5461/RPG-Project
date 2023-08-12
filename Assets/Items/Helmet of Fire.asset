@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40736959fbf85745aea0ccb9ff20aa4, type: 3}
-  m_Name: Shield
+  m_Script: {fileID: 11500000, guid: d8bb23422b827794fa78d67b622eb9c2, type: 3}
+  m_Name: Helmet of Fire
   m_EditorClassIdentifier: 
-  name: Placeholder Shield
-  icon: {fileID: 21300000, guid: 63168fb96cbb74646a9d8dd76000b30b, type: 3}
+  name: Helmet of fire
+  icon: {fileID: 21300000, guid: e91bb6a25373dd6449bc68f7ed3e4e80, type: 3}
   isDefaultItem: 0
+  equipslot: 0
+  armorModifier: 2
+  damageModifier: 1
