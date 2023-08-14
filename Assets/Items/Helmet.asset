@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8bb23422b827794fa78d67b622eb9c2, type: 3}
-  m_Name: Sword of Destiny
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  name: Sword of Destiny
+  name: Helmet of fire
   icon: {fileID: 21300000, guid: e91bb6a25373dd6449bc68f7ed3e4e80, type: 3}
   isDefaultItem: 0
-  equipslot: 3
-  armorModifier: 0
-  damageModifier: 3
+  equipslot: 0
+  armorModifier: 2
+  damageModifier: 1
