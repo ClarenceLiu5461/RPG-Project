@@ -39,7 +39,7 @@ public class EquipmentManager : MonoBehaviour
     public void Equip(Equipment newItem)
     {
         //Find out what slot the item fits in
-        int slotIndex = (int)newItem.equipslot;
+        int slotIndex = (int)newItem.equipSlot;
 
         Equipment oldItem = null;
 
@@ -56,6 +56,8 @@ public class EquipmentManager : MonoBehaviour
         {
             onEquipmentChanged.Invoke(newItem, oldItem);
         }
+
+        SetEquipmentBlendShapes(newItem, 100);
 
         //Insert the item into the slot
         currentEquipment[slotIndex] = newItem;
@@ -79,6 +81,7 @@ public class EquipmentManager : MonoBehaviour
             }
             //Add the item to the inventory
             Equipment oldItem = currentEquipment[slotIndex];
+            SetEquipmentBlendShapes(oldItem, 0);
             inventory.Add(oldItem);
 
             //Remove the item from equipment array
@@ -91,7 +94,7 @@ public class EquipmentManager : MonoBehaviour
             }
         }
     }
-
+    //Unequip all items
     public void UnequipAll()
     {
         for (int i = 0; i <currentEquipment.Length; i++)
@@ -100,8 +103,17 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
+    void SetEquipmentBlendShapes(Equipment item, int weight)
+    {
+        foreach (EquipmentMeshRegion blendShape in item.coveredMeshRegions)
+        {
+            targetMesh.SetBlendShapeWeight((int)blendShape, weight);
+        }
+    }
+
     void Update()
     {
+        //Unequip all items fi we press U
         if (Input.GetKeyDown(KeyCode.U))
         {
             UnequipAll();
