@@ -803,6 +803,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052343aa71a486d4ba5ea160effa68fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItems:
+  - {fileID: 11400000, guid: 83173ced6f855c047989f3c691b7df7a, type: 2}
+  - {fileID: 11400000, guid: ceae09ca232bc94488756739b75a1ac0, type: 2}
+  - {fileID: 11400000, guid: bf886949254eab5458fd88ff75454a73, type: 2}
+  - {fileID: 11400000, guid: 044f1c42bb8625f449ae79f745183abd, type: 2}
   targetMesh: {fileID: 1630794973266612990}
 --- !u!1 &157229481
 GameObject:

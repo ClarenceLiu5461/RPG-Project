@@ -15,6 +15,7 @@ public class EquipmentManager : MonoBehaviour
     }
     #endregion
 
+    public Equipment[] defaultItems;
     public SkinnedMeshRenderer targetMesh;
     Equipment[] currentEquipment; //Items player current have equipped
     SkinnedMeshRenderer[] currentMeshes;
@@ -32,7 +33,8 @@ public class EquipmentManager : MonoBehaviour
        //Initialize currentEquipment based on number of equipment slots 
        int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
        currentEquipment = new Equipment[numSlots];
-       currentMeshes = new SkinnedMeshRenderer[numSlots]; 
+       currentMeshes = new SkinnedMeshRenderer[numSlots];
+       EquipDefaultItems();
     }
 
     //Equip a new item
@@ -41,15 +43,7 @@ public class EquipmentManager : MonoBehaviour
         //Find out what slot the item fits in
         int slotIndex = (int)newItem.equipSlot;
 
-        Equipment oldItem = null;
-
-        //If there was already an item in the slot
-        //make sure tp put it back in the inventory
-        if (currentEquipment[slotIndex] != null)
-        {
-            oldItem = currentEquipment[slotIndex];
-            inventory.Add(oldItem);
-        }
+        Equipment oldItem = Unequip(slotIndex);
 
         //An item has been equipped so we trigger the callback
         if (onEquipmentChanged != null)
@@ -70,7 +64,7 @@ public class EquipmentManager : MonoBehaviour
     }
 
     //Unequip an item with a particular index
-    public void Unequip(int slotIndex)
+    public Equipment Unequip(int slotIndex)
     {
         //Only do this if an item is there
         if (currentEquipment[slotIndex] != null)
@@ -92,7 +86,9 @@ public class EquipmentManager : MonoBehaviour
             {
                 onEquipmentChanged.Invoke(null, oldItem);
             }
+            return oldItem;
         }
+        return null;
     }
     //Unequip all items
     public void UnequipAll()
@@ -101,6 +97,7 @@ public class EquipmentManager : MonoBehaviour
         {
             Unequip(i);
         }
+        EquipDefaultItems();
     }
 
     void SetEquipmentBlendShapes(Equipment item, int weight)
@@ -108,6 +105,14 @@ public class EquipmentManager : MonoBehaviour
         foreach (EquipmentMeshRegion blendShape in item.coveredMeshRegions)
         {
             targetMesh.SetBlendShapeWeight((int)blendShape, weight);
+        }
+    }
+
+    void EquipDefaultItems()
+    {
+        foreach (Equipment item in defaultItems)
+        {
+            Equip(item);
         }
     }
 
